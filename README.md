@@ -32,9 +32,9 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
 
       docker exec -it namenode rm -R /temp/excel
       
-  2 - criar tabela do hive
-      docker exec -it hive-server bash
-      $ hive 
+  2 - criar tabela do hive usando beeline
+      docker cp /home/ubuntu/treinamentos/spark/covid.hsql hive-server:/opt
+      docker exec -it hive-server beeline -u jdbc:hive2:// -n hive -p hive -f covid.hsql >> out.txt
       rodar a query covid.hsql
       
   3 - rodar o jobs para gravar no hive 
