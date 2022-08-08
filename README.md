@@ -31,3 +31,14 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
       #remover a pasta temporaria do container
 
       docker exec -it namenode rm -R /temp/excel
+      
+  2 - criar tabela do hive
+      docker exec -it hive-server bash
+      $ hive 
+      rodar a query covid.hsql
+      
+  3 - rodar o jobs para gravar no hive 
+    * foi criado um notebook só para exploração e teste, mas será rodado pelo job
+    spark-submit --master yarn --deploy-mode client --queue root.bi.carga --executor-memory 12g --executor-cores 8 --total-executor-cores 8 covid_excel.py
+    
+    
