@@ -1,0 +1,19 @@
+
+create table covid (
+regiao string ,
+estado string ,
+coduf integer ,
+codmun integer ,
+codregiaosaude integer ,
+nomeregiaosaude string ,
+data timestamp ,
+semanaepi integer ,
+populacaotcu2019 integer ,
+casosacumulado decimal(10,0) ,
+casosnovos integer ,
+obitosacumulado integer ,
+obitosnovos integer ,
+recuperadosnovos integer ,
+emacompanhamentonovos integer ,
+interiormetropolitana integer 
+)PARTITIONED BY(municipio string) STORED AS PARQUET ;
