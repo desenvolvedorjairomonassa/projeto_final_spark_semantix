@@ -51,5 +51,10 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
     docker cp covid_excel.py jupyter-spark://bin
     
     docker exec -it jupyter-spark spark-submit --master yarn --deploy-mode client --queue root.bi.carga --executor-memory 12g --executor-cores 8 --total-executor-cores 8 /bin/covid_excel.py
-    
-    
+    # pegar o ultimos recuperados e em acompanhamento
+    df_covid.where(col("regiao")=='Brasil')\
+               .select(col('recuperadosnovos'),col('emacompanhamentonovos'))\
+               .orderBy(col("data").desc())\
+               .show(1)
+    #savando no hive           
+    df_covid.write.saveAsTable("visao1")
