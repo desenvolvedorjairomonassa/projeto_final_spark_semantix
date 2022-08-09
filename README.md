@@ -72,7 +72,7 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
     df3 = df_brazil\
                  .withColumn("letalidade",col("obitosacumulado")/col('casosacumulado')*100)\
                  .withColumn("letalidade",round(col("letalidade"),2))\
-                 .withColumn("mortalidade",col("obitosacumulado")/col('populacaotcu2019'))\
+                 .withColumn("mortalidade",col("obitosacumulado")/col('populacaotcu2019')*100000)\
                  .withColumn("mortalidade",round(col("mortalidade"),2))\
                  .select(col('obitosacumulado'),col('obitosnovos'),col("letalidade"),col("mortalidade"))\
                  .limit(1)
