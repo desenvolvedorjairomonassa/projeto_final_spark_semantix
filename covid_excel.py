@@ -8,11 +8,12 @@ from pyspark.sql.functions import when, col
 from pyspark.sql.types import StructType,StructField, StringType, IntegerType, DateType, TimestampType, DecimalType
 from pyspark import SparkContext, SparkConf, SQLContext, HiveContext
 from collections import namedtuple
+conf = (SparkConf().setAppName("covid"))
+sc = SparkContext(conf=conf)
+sc.setLogLevel("ERROR")
+sql_ctx = SQLContext(sc)
+spark = SparkSession(sc)
 
-spark = SparkSession.builder \
-        .master("yarn") \
-        .enableHiveSupport() \
-        .getOrCreate()
 
 schema = StructType([ \
     StructField("regiao",StringType(),True), \
@@ -54,3 +55,4 @@ df= df.withColumnRenamed("codRegiaoSaude","codregiaosaude")\
 	.withColumnRenamed("interior/metropolitana","interiormetropolitana")
 
 df.write.mode("overwrite").partitionBy("municipio").saveAsTable("covid")
+
