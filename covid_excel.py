@@ -52,7 +52,8 @@ df= df.withColumnRenamed("codRegiaoSaude","codregiaosaude")\
 	.withColumnRenamed("obitosAcumulado","obitosacumulado")\
 	.withColumnRenamed("obitosNovos","obitosnovos")\
 	.withColumnRenamed("emAcompanhamentoNovos","emacompanhamentonovos")\
-	.withColumnRenamed("interior/metropolitana","interiormetropolitana")
+	.withColumnRenamed("interior/metropolitana","interiormetropolitana")\
+	.withColumnRenamed("Recuperadosnovos","recuperadosnovos")
 
 df.write.mode("overwrite").partitionBy("municipio").saveAsTable("covid")
 
