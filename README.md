@@ -105,3 +105,6 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
                            sum(col("casosacumulado")).alias("casos_acumulado")\
                           )\
                       .orderBy(col("letalidade").desc())
+7 - Também fiz no databricks, para ver a performance, excelente, depois que carrega em memóra qual consulta ou gráfico é rapido 
+
+  <img src="desafiofinal_semantix.png">
