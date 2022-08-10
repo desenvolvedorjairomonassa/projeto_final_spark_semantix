@@ -1,6 +1,14 @@
-# Projeto final do bootcamp de engenheiro de bigdata
-utilizado docker
-docker compose alterado : docker-compose -f docker-compose-minimo.yml up
+<h1> Projeto final </h1>
+<h2>Bootcamp de engenheiro de Bigdata </h2> 
+<h3> Semantix </h3>
+  - utilizado vm em ubuntu
+  - e utilizando docker
+  - docker compose alterado : docker-compose -f docker-compose-minimo.yml up (*não fiz download dos env)
+  
+  
+  Testei usando databricks também
+  
+   <img src="desafiofinal_semantix2.png">
 
 
 source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8SgQYS2ptm/04bd3419b22b9cc5c6efac2c6528100d_HIST_PAINEL_COVIDBR_06jul2021.rar
