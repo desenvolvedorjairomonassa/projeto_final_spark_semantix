@@ -82,4 +82,16 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
   4 - df1.write.saveAsTable("view1")
   5 - df2.write.mode("overwrite").option("compression", "snappy").parquet("/user/jairomonassa/view2")
 
-
+  6- 
+      # outras consultas interessantes, municipios mais letáis
+      windowMunicipio  = Window.partitionBy("municipio").orderBy(col("data").desc())
+      df_municipio = df_covid\
+                      .withColumn("rank",rank().over(windowMunicipio))\
+                      .where(col("municipio").isNotNull())\
+                      .where(col("rank") == 1)\
+                      .withColumn("letalidade",col("obitosacumulado")/col('casosacumulado')*100)\
+                      .withColumn("letalidade",round(col("letalidade"),2))\
+                      .withColumn("mortalidade",col("obitosacumulado")/col('populacaotcu2019')*100000)\
+                      .withColumn("mortalidade",round(col("mortalidade"),2))\
+                      .orderBy(col("letalidade").desc())\
+                      .limit(10)
