@@ -79,5 +79,7 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
                  .limit(1)
     #df3.show()
     df3.write.mode("overwrite").parquet("/user/jairomonassa/v3")
+  4 - df1.write.saveAsTable("view1")
+  5 - df2.write.mode("overwrite").option("compression", "snappy").parquet("/user/jairomonassa/view2")
 
 
