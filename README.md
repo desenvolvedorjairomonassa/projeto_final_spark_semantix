@@ -80,10 +80,11 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
     #df3.show()
     df3.write.mode("overwrite").parquet("/user/jairomonassa/v3")
   4 - df1.write.saveAsTable("view1")
+  
   5 - df2.write.mode("overwrite").option("compression", "snappy").parquet("/user/jairomonassa/view2")
 
-  6- 
-      # outras consultas interessantes, municipios mais letáis
+  6 - # outras consultas interessantes, municipios mais letáis
+  
       windowMunicipio  = Window.partitionBy("municipio").orderBy(col("data").desc())
       df_municipio = df_covid\
                       .withColumn("rank",rank().over(windowMunicipio))\
@@ -95,3 +96,12 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
                       .withColumn("mortalidade",round(col("mortalidade"),2))\
                       .orderBy(col("letalidade").desc())\
                       .limit(10)
+
+      df_estado = df_municipio\
+                      .groupBy("regiao")\
+                      .agg(sum(col("obitosacumulado")).alias("obitos_acumulado"),\
+                           avg(col("letalidade")).alias("letalidade"),\
+                           avg(col("mortalidade")).alias("mortalidade"),\
+                           sum(col("casosacumulado")).alias("casos_acumulado")\
+                          )\
+                      .orderBy(col("letalidade").desc())
