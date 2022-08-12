@@ -6,7 +6,7 @@
   - docker compose alterado : docker-compose -f docker-compose-minimo.yml up (*não fiz download dos env)
   
   
-  Testei usando databricks também
+  Testei usando databricks também para saber se a performance é a mesma, para processamento de consulta, foi mais rápido usuando 140 gb com 20 cores do que 14 e 4 coures, porém quando falamos em disco , como gravar no hdfs e particionar por municípo, o tempo das duas configurações foi quase o mesmo, só em processos que precisa de mais memoria
   
    <img src="desafiofinal_semantix2.png">
 
