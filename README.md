@@ -98,9 +98,9 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
     
   
   # criando um topic
-  docker exec -it kafka kafka-topics.sh --bootstrap-server kafka:9092 --topic desafiofinal --create --partitions 1 --replication-factor 1
+  7 - docker exec -it kafka kafka-topics.sh --bootstrap-server kafka:9092 --topic desafiofinal --create --partitions 1 --replication-factor 1
 
-  7 - # outras consultas interessantes, municipios mais letáis
+  998 - # outras consultas interessantes, municipios mais letáis
   
       windowMunicipio  = Window.partitionBy("municipio").orderBy(col("data").desc())
       df_municipio = df_covid\
@@ -122,6 +122,6 @@ source : https://mobileapps.saude.gov.br/esus-vepi/files/unAFkcaNDeXajurGB7LChj8
                            sum(col("casosacumulado")).alias("casos_acumulado")\
                           )\
                       .orderBy(col("letalidade").desc())
-8 - Também fiz no databricks, para ver a performance, excelente, depois que carrega em memóra qual consulta ou gráfico é rapido 
+999 - Também fiz no databricks, para ver a performance, excelente, depois que carrega em memóra qual consulta ou gráfico é rapido 
 
   <img src="desafiofinal_semantix.png">
